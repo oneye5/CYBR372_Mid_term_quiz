@@ -1,0 +1,532 @@
+import random
+import re
+import os
+import sys
+import time
+
+# Database of questions and answers extracted from the documents
+questions_db = [
+       {
+        "question": "What are the key goals of cryptography",
+        "options": {
+            "A": "All of these",
+            "B": "Confidentiality",
+            "C": "Data integrity",
+            "D": "Non repudiation"
+        },
+        "correct": "A"
+    },
+       {
+        "question": "What does D.O.A stand for in the context of cryptography",
+        "options": {
+            "A": "Data origin authentication",
+            "B": "Dead on arrival",
+            "C": "Do origin authentication",
+            "D": "Diabolical original Arman"
+        },
+        "correct": "A"
+    },
+       {
+        "question": "What best describes N.R.",
+        "options": {
+            "A": "A sender cannot deny having sent a message or performed a transaction",
+            "B": "A youtuber who makes videos about chemistry",
+            "C": "A famous river",
+            "D": "Messages cannot be read by anyone who is not the recipient"
+        },
+        "correct": "A"
+    },
+       {
+        "question": "What best describes E.A.",
+        "options": {
+            "A": "Process of verifying the identity of a device, person or entity",
+            "B": "Ensuring messages sent from a device actually came from that device",
+            "C": "A game studio",
+            "D": "The verification that encrypted plaintext is propperly encrypted"
+        },
+        "correct": "A"
+    },
+       {
+        "question": "What best describes a cryptographic primitive",
+        "options": {
+            "A": "All of these",
+            "B": "Block cipher",
+            "C": "MAC",
+            "D": "Digital signatures"
+        },
+        "correct": "A"
+    },
+       {
+        "question": "What best describes keyspace",
+        "options": {
+            "A": "The collection of all possible decryption keys",
+            "B": "The secure portion of memory where keys are kept",
+            "C": "G",
+            "D": "D"
+        },
+        "correct": "A"
+    },
+       {
+        "question": "Which one of these is wrong",
+        "options": {
+            "A": "M refers to the ciphertext message",
+            "B": "K refers to encryption and decryption key spaces",
+            "C": "E, refers to an encryption algorithm",
+            "D": "D refers to a decryption algorithm"
+        },
+        "correct": "A"
+    },
+       {
+        "question": "What is the key difference between symetric and asymetric cryptography",
+        "options": {
+            "A": "Asymetric cryptorgaphy involves public and private keys",
+            "B": "Symetric cryptograpgy involves public and private keys with the goal of avoiding a known secret between parties",
+            "C": "Symetric cryptography tends to be much slower than asymetric cryptography due to the underlying algorithms",
+            "D": "Arman."
+        },
+        "correct": "A"
+    },
+       {
+        "question": "Is keeping the specific algorithm used secret, a common and effective additional layer of security",
+        "options": {
+            "A": "No",
+            "B": "Yes",
+            "C": "Maybe so",
+            "D": ""
+        },
+        "correct": "A"
+    },
+       {
+        "question": "What best aligns with Kerckoff's principle",
+        "options": {
+            "A": "All secrets should concentrated in the decryption key",
+            "B": "Assignments should be released on time, and of acceptable quality",
+            "C": "Cryptography should be used where information is not public to everyone",
+            "D": "The encryption algorithm should be hidden"
+        },
+        "correct": "A"
+    },
+       {
+        "question": "Which would be considered 'more secure'",
+        "options": {
+            "A": "A publicly known algorithm",
+            "B": "A proprietary algorithm, known by minimal parties",
+            "C": "Unknown asymetric encrpytion",
+            "D": ""
+        },
+        "correct": "A"
+    },
+       {
+        "question": "What best describes KPA",
+        "options": {
+            "A": "An attacker knows some plaintext and ciphertext pairs",
+            "B": "An attacker knows the private key of the target",
+            "C": "An attacker knows only the encryption algorithm and some ciphertext",
+            "D": "An attacker knows that Arman is the source of all evil"
+        },
+        "correct": "A"
+    },
+       {
+        "question": "What are substitution ciphers most vulnerable to",
+        "options": {
+            "A": "Frequency analysis",
+            "B": "Dictionary attack",
+            "C": "",
+            "D": ""
+        },
+        "correct": "A"
+    },
+       {
+        "question": "What are some key takeaways from historical ciphers",
+        "options": {
+            "A": "Each bit should depend on several parts of the key",
+            "B": "Changing a single bit of plaintext should uniformly affect the entire ciphertext",
+            "C": "None of these",
+            "D": "All of these"
+        },
+        "correct": "A"
+    },
+       {
+        "question": "What is perfect secrecy",
+        "options": {
+            "A": "If after seeing the ciphertext, an interceptor gets no extra information about the plaintext",
+            "B": "The key size is of sufficient size as to not be reasonably brute forcable",
+            "C": "RSA",
+            "D": "CBC"
+        },
+        "correct": "A"
+    },
+       {
+        "question": "Which opperator alone can achieve 'perfect secrecy'",
+        "options": {
+            "A": "XOR",
+            "B": "XNOR",
+            "C": "NAND",
+            "D": "MOD"
+        },
+        "correct": "A"
+    },
+       {
+        "question": "Why is XOR not typically used in isolation for symetric cryptography",
+        "options": {
+            "A": "It requires an equal size key, which can be slow",
+            "B": "It requires a shared secret with the recipient",
+            "C": "The opperation itself is relatively slow when compared to alternatives",
+            "D": "It is very simple to brute force"
+        },
+        "correct": "A"
+    },
+       {
+        "question": "What is the key difference between stream and block ciphers",
+        "options": {
+            "A": "Block ciphers opperate on multiple bits at once",
+            "B": "Stream ciphers tend to be used for asymetric cryptography where block ciphers tend to be for symetric",
+            "C": "Stream ciphers typically use XOR, where block ciphers use more complicated opperations such as using mod with prime numbers",
+            "D": "Arman"
+        },
+        "correct": "A"
+    },
+       {
+        "question": "What is the key downside to stream ciphers",
+        "options": {
+            "A": "Reuse of keys results in information leakage",
+            "B": "They are slow when compared to block ciphers, since block ciphers can be paralelized",
+            "C": "They are unreliable due to error propigation",
+            "D": ""
+        },
+        "correct": "A"
+    },
+       {
+        "question": "Which are disadvantages of block ciphers (like AES)",
+        "options": {
+            "A": "Need for padding",
+            "B": "Error propagation",
+            "C": "All of these",
+            "D": "None of these"
+        },
+        "correct": "A"
+    },
+       {
+        "question": "What is the point of MAC",
+        "options": {
+            "A": "To ensure a message has not been altered, and to verify the senders identity",
+            "B": "To encrypt communication using a shared secret",
+            "C": "To verify that a file has not been altered after the creation of the MAC",
+            "D": "CYBR371 meltdown assignment"
+        },
+        "correct": "A"
+    },
+       {
+        "question": "What is a type of MAC (mentioned in lectures)",
+        "options": {
+            "A": "HMAC",
+            "B": "DMAC",
+            "C": "XMAC",
+            "D": "QMAC"
+        },
+        "correct": "A"
+    },
+       {
+        "question": "What is a type of MAC (mentioned in lectures)",
+        "options": {
+            "A": "CMAC",
+            "B": "DMAC",
+            "C": "XMAC",
+            "D": "QMAC"
+        },
+        "correct": "A"
+    },
+       {
+        "question": "What does MAC stand for (per the slides)",
+        "options": {
+            "A": "Message Authentication Code",
+            "B": "Media access control",
+            "C": "Mild Arman Comicality",
+            "D": "Message Authoriztion Cipher"
+        },
+        "correct": "A"
+    },
+       {
+        "question": "What is commonly the key opperation in the context of asymetric cryptography",
+        "options": {
+            "A": "Modulo",
+            "B": "XOR",
+            "C": "Pow",
+            "D": "NAND"
+        },
+
+        "correct": "A"
+    },
+       {
+        "question": "What is MOD(5,7)",
+        "options": {
+            "A": "5",
+            "B": "2",
+            "C": "9",
+            "D": "7"
+        },
+        "correct": "A"
+    },
+       {
+        "question": "What is MOD(6,3)",
+        "options": {
+            "A": "0",
+            "B": "3",
+            "C": "6",
+            "D": "9"
+        },
+        "correct": "A"
+    },
+       {
+        "question": "What is MOD(9,2)",
+        "options": {
+            "A": "1",
+            "B": "11",
+            "C": "9",
+            "D": "2"
+        },
+        "correct": "A"
+    },
+       {
+        "question": "What is RSA",
+        "options": {
+            "A": "An asymetric algorithm",
+            "B": "A symetric algorithm",
+            "C": "A MAC algorithm",
+            "D": "A rman algorithm"
+        },
+        "correct": "A"
+    },
+       {
+        "question": "If p=3 q=7, what is t and e (in the context of asymetric cryptography)",
+        "options": {
+            "A": "t=2, though e is not known",
+            "B": "t=1, e=3",
+            "C": "t is unknown, e=3",
+            "D": "im so sorry for this evil question..."
+        },
+        "correct": "A"
+    },
+       {
+        "question": "What is t? (in the context of asymetric cryptography)",
+        "options": {
+            "A": "t=lcm(p-1,q-1)",
+            "B": "t=mod(p,q)",
+            "C": "t=p^e - q^e",
+            "D": "again... this is evil"
+        },
+        "correct": "A"
+    },
+       {
+        "question": "Why use digital signatures over MAC",
+        "options": {
+            "A": "MAC requires shared secret keys, while digital signatures work with public/private keys",
+            "B": "MAC is only used to ensure a file has not been modified",
+            "C": "Digital signatures verify the identity of the sender where MAC does not",
+            "D": "'This is madness and rediculus' yeah... I agree"
+        },
+        "correct": "A"
+    },
+       {
+        "question": "What are some forms of E.A.",
+        "options": {
+            "A": "All of these",
+            "B": "Timestamps",
+            "C": "Sequence numbers",
+            "D": "Nonce based mechanisms (numbers used only once, silly stupid name)"
+        },
+        "correct": "A"
+    },
+       {
+        "question": "Which of the following is correct",
+        "options": {
+            "A": "Non repudiation is sufficient for data origin authentication",
+            "B": "Confidentiality is sufficient for ensuring data integrity",
+            "C": "Data origin authentication is sufficient for non repudiation",
+            "D": "data integrity requires non repudiation"
+        },
+        "correct": "A"
+    },
+       {
+        "question": "When encrypting an image, which algorithm still alows for inference of the original image (image shape isnt hidden)",
+        "options": {
+            "A": "ECB",
+            "B": "CBC",
+            "C": "Any algorithm using a short key",
+            "D": "Any of these COULD be true"
+        },
+        "correct": "A"
+    },
+       {
+        "question": "Which of the following statements about perfect secrecy is correct",
+        "options": {
+            "A": "Perfect secrecy is achieved with symmetric key encryption not public key encryption",
+            "B": "Perfect secrecy can be implemented using a strong pseudo-random number generator to create a key stream",
+            "C": "Perfect key secrecy is achievable with modern encryption algorithms like AES when used with a large key",
+            "D": "In perfect secrecy every possible plaintext must be equally likely given any ciphertext"
+        },
+        "correct": "A"
+    },
+       {
+        "question": "In the context of verifying a digital signature which of the following is NOT used as a parameter in the verification proess",
+        "options": {
+            "A": "The signing key",
+            "B": "The digital signature itself",
+            "C": "The verification key",
+            "D": "The original message on which the signature is created"
+        },
+        "correct": "A"
+    },
+       {
+        "question": "How many bits can be represented in a signle base64 character",
+        "options": {
+            "A": "6",
+            "B": "7",
+            "C": "8",
+            "D": "4"
+        },
+        "correct": "A"
+    },
+       {
+        "question": "( FUN QUESTION c: ) If a pool takes 10 minuites to fill, and the contents doubles every when filling minuite, when is the pool a quater full",
+        "options": {
+            "A": "8 mins",
+            "B": "9 mins",
+            "C": "5 mins",
+            "D": "2.5 mins"
+        },
+        "correct": "A"
+    },
+       {
+        "question": "Suppose you write an IOU document stating you owe $100, which property of the hash function ensures that someone cannot modify the file and change it to $1000",
+        "options": {
+            "A": "Seccond pre image resistance",
+            "B": "Collision resistance",
+            "C": "Pre image resistance",
+            "D": "Replay sttack resistance"
+        },
+        "correct": "A"
+    },
+       {
+        "question": "Which of the following correctly describes the differences or simularities between MAC and digital signatures",
+        "options": {
+            "A": "Security of both of them depends on keeping a secret key",
+            "B": "Digital signatures are faster to compute then MACs",
+            "C": "Both MAC and digital signatures can only be verified by the intended recipient",
+            "D": "Both Mac and digital signatures provide non repudiation ensuring that the sender cannot deny having sent the message"
+        },
+        "correct": "A"
+    },
+   ]
+
+
+
+def shuffle(items):
+    shuffled = []
+    list_copy = list(items)
+    while len(list_copy) > 0:
+        shuffled.append(list_copy.pop(random.randint(0, len(list_copy) - 1)))
+    return shuffled
+
+def clear_screen():
+    """Clear the console screen based on operating system"""
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+def display_question(q_data, q_num, q_count):
+    """Display a question and its options"""
+    print(f"\nQuestion {q_num} of {q_count}:")
+    print(q_data["question"])
+    print()
+    q_data_shuffled = shuffle(q_data["options"].items())
+    i = 0
+    for key, value in q_data_shuffled:
+        print(f"{['A', 'B', 'C', 'D'][i]}. {value}")
+        i += 1
+    print()
+    return q_data_shuffled
+
+def get_user_answer():
+    """Get and validate user input"""
+    while True:
+        answer = input("Your answer (A/B/C/D): ").strip().upper()
+        if answer in ['A', 'B', 'C', 'D']:
+            return answer
+        else:
+            print("Invalid input. Please enter A, B, C, or D.")
+
+def run_quiz():
+    """Main function to run the quiz"""
+    score = 0
+    total_questions = 0
+    incorrect_questions = []
+    
+    try:
+        clear_screen()
+        print("======================================")
+        print("CYBR372 PRACTICE QUIZ")
+        print("======================================")
+        print("God help us all...")
+        #x = input("Press Enter to begin normal quiz, input 'mini' to start a trimmed version of the quiz\n")
+        x = input("Press enter to begin")
+        shuffled_questions = []
+
+        if x == "mini":
+            shuffled_questions = shuffle(questions_db[120:])
+        else:
+            shuffled_questions = shuffle(questions_db)
+        
+        for question in shuffled_questions:
+            total_questions += 1
+            
+            clear_screen()
+            answer_order = display_question(question, total_questions, len(shuffled_questions))
+            user_answer = get_user_answer()
+            
+            # Check if answer is correct
+            i = 0
+            for item in answer_order:
+                if item[0] == question["correct"]:
+                    correct_answer = ['A', 'B', 'C', 'D'][i]
+                i += 1
+            is_correct = user_answer == correct_answer
+            
+            if is_correct:
+                print("\n✓ Correct! Well done!")
+                score += 1
+            else:
+                print(f"\n✗ Incorrect. The correct answer is {correct_answer}.")
+                explanation = question['options'][question["correct"]]
+                print(f"Explanation: {explanation}")
+                incorrect_questions.append(f"Q: {question['question']}\nYour Answer: {user_answer}\nCorrect: {correct_answer}\nExplanation: {question['options'][correct_answer]}")
+                input("Press enter to continue")
+            
+            print(f"\nCurrent score: {score}/{total_questions} ({score/total_questions*100:.1f}%)")
+            
+            time.sleep(2)
+            
+            
+    except KeyboardInterrupt:
+        clear_screen()
+        print("\nQuiz interrupted.")
+    
+    finally:
+        # Display final score
+        if total_questions > 0:
+            clear_screen()
+            print("\n======================================")
+            print("QUIZ COMPLETED")
+            print("======================================")
+            print(f"Final Score: {score}/{total_questions} ({score/total_questions*100:.1f}%)")
+            
+            if score/total_questions >= 0.9:
+                print("Excellent! You're well prepared for the test!")
+            elif score/total_questions >= 0.6:
+                print("Good job! With a bit more study, you'll be well prepared.")
+            elif score/total_questions >= 0.2:
+                print("You might need some more study time to prepare for the test.")
+            else:
+                print("L.")
+
+
+if __name__ == "__main__":
+    run_quiz()
