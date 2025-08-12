@@ -599,11 +599,96 @@ questions_db = [
   },
   "correct": "A"
 },
-
-
-
-
-
+       {
+        "question": "What is the main idea behind the Birthday Attack on hash functions?",
+        "options": {
+            "A": "It exploits the fact that collisions can be found in about 2^(L/2) attempts for an L-bit hash",
+            "B": "It allows an attacker to recover the original message from its hash",
+            "C": "It is a brute-force attack that tries all possible inputs up to 2^L",
+            "D": "It relies on reversing the compression function of the hash algorithm"
+        },
+        "correct": "A"
+    },
+       {
+        "question": "What is a replay attack?",
+        "options": {
+            "A": "Re-sending previously captured valid messages to trick the receiver into accepting them again",
+            "B": "Brute forcing a password by replaying guessed values until accepted",
+            "C": "Intercepting a message and modifying it before delivering",
+            "D": "Replacing a key exchange with a fake public key"
+        },
+        "correct": "A"
+    },
+       {
+        "question": "In the MAC-then-encrypt protocol, what is the correct order of operations for the receiver?",
+        "options": {
+            "A": "Separate the MAC from the ciphertext, decrypt the ciphertext, compute a MAC on the plaintext, and compare",
+            "B": "Verify the MAC on the ciphertext before decrypting it",
+            "C": "Decrypt the ciphertext, then compare it directly to the received MAC without recomputing",
+            "D": "Use the MAC to derive the decryption key"
+        },
+        "correct": "A"
+    },
+       {
+        "question": "Which security services are provided by the MAC-then-encrypt protocol described in the course?",
+        "options": {
+            "A": "Confidentiality and detection of accidental errors",
+            "B": "Confidentiality only",
+            "C": "Integrity only",
+            "D": "Authentication only"
+        },
+        "correct": "A"
+    },
+       {
+        "question": "What is an advantage of using a password-based key derivation function (PBKDF)?",
+        "options": {
+            "A": "Users can remember passwords more easily than long random cryptographic keys",
+            "B": "PBKDFs make encryption completely immune to brute-force attacks",
+            "C": "PBKDFs ensure the password itself never needs to be remembered",
+            "D": "PBKDFs make encryption run faster than using a raw key"
+        },
+        "correct": "A"
+    },
+       {
+        "question": "What is the role of a salt in password-based key derivation?",
+        "options": {
+            "A": "It ensures the same password generates different keys, preventing use of precomputed dictionaries",
+            "B": "It makes the password impossible to brute-force",
+            "C": "It hides the password from the key derivation function",
+            "D": "It replaces the need for a strong password"
+        },
+        "correct": "A"
+    },
+       {
+        "question": "The security of Diffie-Hellman key exchange relies on the difficulty of which problem?",
+        "options": {
+            "A": "Computing the discrete logarithm in a large prime field",
+            "B": "Factoring the product of two large primes",
+            "C": "Finding two numbers that multiply to a given composite",
+            "D": "Reversing a cryptographic hash function"
+        },
+        "correct": "A"
+    },
+       {
+        "question": "In a certain block cipher mode, flipping one bit in a ciphertext block affects only the same bit in the corresponding plaintext block. Which property is this describing?",
+        "options": {
+            "A": "Minimal error propagation",
+            "B": "Complete avalanche effect",
+            "C": "Self-synchronizing stream mode",
+            "D": "Chained block dependency"
+        },
+        "correct": "A"
+    },
+       {
+        "question": "Which of the following is NOT a valid encryption scheme structure?",
+        "options": {
+            "A": "Using the XOR of the plaintext with the bitwise NOT of the key",
+            "B": "Using the XOR of the plaintext with the key",
+            "C": "Using the XOR of the plaintext with the key XOR an IV",
+            "D": "Using the XOR of the plaintext with the key AND an IV"
+        },
+        "correct": "A"
+    },
    ]
 
 
