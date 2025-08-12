@@ -417,6 +417,193 @@ questions_db = [
         },
         "correct": "A"
     },
+       {
+        "question": "Which is NOT a key property of a secure hashing algorithm",
+        "options": {
+            "A": "A secure hash function should keep the encryption key private",
+            "B": "Given hash output h, it should be computationally infeasable to find any input m such that hash(m) = h",
+            "C": "Given specific input m1, it should be infeasible to find another input m2 where m1 != m2 but hash(m1) == hash(m2)",
+            "D": "It should be infeasible to find any two distinct inputs m1, m2 that prodce the same hash"
+        },
+        "correct": "A"
+    },
+       {
+        "question": "Which is IS a key property of a secure hashing algorithm",
+        "options": {
+            "A": "A change of 1 bit, should cause a large unpredictable change in output",
+            "B": "A secure hash function should keep the encryption key private",
+            "C": "A secure hash should preserve the ordering of input values in the output values",
+            "D": "A secure hash should be revsible so the original message can be recovered from the hash, this is important for MAC and signatures"
+        },
+        "correct": "A"
+    },
+       {
+        "question": "Which is IS a key property of a secure hashing algorithm",
+        "options": {
+            "A": "The same input should always produce the exact same output",
+            "B": "Larger inputs should produce proportionally larger hash values, because of the pidgeon hole prinsiple mentioned in lectures",
+            "C": "If input A hashes to B, then B should hash back to A",
+            "D": "Hash outputs should be easily read and remembered by humans"
+        },
+        "correct": "A"
+    },
+       {
+        "question": "Which is IS a key property of a secure hashing algorithm",
+        "options": {
+            "A": "All possible hash values should be equally likely for random inputs",
+            "B": "Larger inputs should produce proportionally larger hash values, because of the pidgeon hole prinsiple mentioned in lectures",
+            "C": "If input A hashes to B, then B should hash back to A",
+            "D": "Hash outputs should be easily read and remembered by humans"
+        },
+        "correct": "A"
+    },
+       {
+        "question": "Which is IS a key property of a secure hashing algorithm",
+        "options": {
+            "A": "The hashing function should be fast enough for legitimate use, but slow enough as to make brute forcing infeasable",
+            "B": "Larger inputs should produce proportionally larger hash values, because of the pidgeon hole prinsiple mentioned in lectures",
+            "C": "If input A hashes to B, then B should hash back to A",
+            "D": "Hash outputs should be easily read and remembered by humans"
+        },
+        "correct": "A"
+    },
+       {
+        "question": "Which is true about XOR",
+        "options": {
+            "A": "When performing XOR on a key and plaintext, the resulting ciphertext can then be 'reversed' by simply XOR'ing with the key again",
+            "B": "XOR always increases the size of the data to ensure security",
+            "C": "XOR requires the key to be longer than the message for correct operation",
+            "D": "XOR encryption is secure even if the same key is reused many times"
+        },
+        "correct": "A"
+    },
+       {
+        "question": "Which is a common reason reusing a key in a stream cipher is insecure",
+        "options": {
+            "A": "It allows attackers to derive relationships between plaintexts",
+            "B": "It makes the ciphertext longer and thus easier to intercept",
+            "C": "It causes the key to randomly change during transmission",
+            "D": "It prevents the ciphertext from being decrypted"
+        },
+        "correct": "A"
+    },
+       {
+        "question": "Which is true about the avalanche effect in hashing",
+        "options": {
+            "A": "Changing one bit of input should cause a large unpredictable change in the output",
+            "B": "Changing one bit of input should only slightly change the output",
+            "C": "The avalanche effect ensures that the output is always shorter than the input",
+            "D": "Avalanche effect means the hash function can be reversed"
+        },
+        "correct": "A"
+    },
+       {
+        "question": "Which is true about collision resistance",
+        "options": {
+            "A": "It should be infeasible to find any two different inputs that produce the same hash output",
+            "B": "It means a hash can never produce the same output twice",
+            "C": "It ensures that a hash can be reversed to the original input",
+            "D": "It guarantees that all outputs are prime numbers"
+        },
+        "correct": "A"
+    },
+       {
+        "question": "Which is true about preimage resistance",
+        "options": {
+            "A": "Given a hash output h, it should be infeasible to find an input m such that hash(m) = h",
+            "B": "Given a message, it should be infeasible to find the hash value",
+            "C": "It ensures that the same input produces a different hash each time",
+            "D": "It ensures the hash is always shorter than the input"
+        },
+        "correct": "A"
+    },
+       {
+        "question": "Which is true about base64 encoding",
+        "options": {
+            "A": "Each base64 character represents exactly 6 bits of data",
+            "B": "Each base64 character represents exactly 7 bits of data",
+            "C": "Base64 encoding compresses the original data to a smaller size",
+            "D": "Base64 encoding is a secure form of encryption"
+        },
+        "correct": "A"
+    },
+       {
+        "question": "Which is true about ECB mode encryption",
+        "options": {
+            "A": "It encrypts identical plaintext blocks into identical ciphertext blocks",
+            "B": "It ensures every block of ciphertext is unique regardless of plaintext",
+            "C": "It automatically hides all patterns in the plaintext",
+            "D": "It is slower than all other block cipher modes"
+        },
+        "correct": "A"
+    },
+{
+  "question": "Which is true about ECB mode?",
+  "options": {
+    "A": "Identical plaintext blocks always produce identical ciphertext blocks",
+    "B": "ECB mode uses a feedback mechanism to randomize each block",
+    "C": "ECB mode is immune to pattern leakage in images",
+    "D": "ECB mode encrypts each block using a different key"
+  },
+  "correct": "A"
+},
+
+{
+  "question": "Which is true about CBC mode?",
+  "options": {
+    "A": "Each plaintext block is XOR'd with the previous ciphertext block before encryption",
+    "B": "CBC mode can be parallelized for both encryption and decryption",
+    "C": "CBC mode does not require an initialization vector (IV)",
+    "D": "A single bit error in a ciphertext block only affects the corresponding plaintext block"
+  },
+  "correct": "A"
+},
+{
+  "question": "Which is true about CFB mode?",
+  "options": {
+    "A": "It turns a block cipher into a self-synchronizing stream cipher",
+    "B": "CFB mode requires padding to work correctly",
+    "C": "CFB mode encrypts the plaintext directly without XOR",
+    "D": "CFB mode cannot recover if synchronization is lost"
+  },
+  "correct": "A"
+},
+{
+  "question": "Which is true about OFB mode?",
+  "options": {
+    "A": "OFB generates keystream blocks by repeatedly encrypting the previous output block",
+    "B": "OFB mode requires the plaintext to be padded to a multiple of the block size",
+    "C": "OFB mode is self-synchronizing after transmission errors",
+    "D": "OFB mode encrypts each plaintext block independently, similar to ECB"
+  },
+  "correct": "A"
+},
+
+{
+  "question": "Which is true about CTR mode?",
+  "options": {
+    "A": "CTR mode uses a counter value that is encrypted to produce the keystream",
+    "B": "CTR mode requires padding for partial blocks",
+    "C": "CTR mode cannot be parallelized",
+    "D": "CTR mode encrypts plaintext blocks directly with the block cipher"
+  },
+  "correct": "A"
+},
+{
+  "question": "Which is true about GCM mode?",
+  "options": {
+    "A": "GCM mode provides both encryption and authentication",
+    "B": "GCM mode is based on CBC encryption with additional hashing",
+    "C": "GCM mode is slower than CBC in most hardware implementations",
+    "D": "GCM mode requires padding for plaintext"
+  },
+  "correct": "A"
+},
+
+
+
+
+
    ]
 
 
