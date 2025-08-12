@@ -139,10 +139,10 @@ questions_db = [
        {
         "question": "What are some key takeaways from historical ciphers",
         "options": {
-            "A": "Each bit should depend on several parts of the key",
+            "A": "All of these",
             "B": "Changing a single bit of plaintext should uniformly affect the entire ciphertext",
             "C": "None of these",
-            "D": "All of these"
+            "D": "Each bit should depend on several parts of the key"
         },
         "correct": "A"
     },
