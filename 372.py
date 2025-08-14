@@ -16,6 +16,258 @@ questions_db = [
         },
         "correct": "A"
     },
+    {
+        "question": "Which property ensures that a digital signature cannot be created by anyone other than the signer?",
+        "options": {
+            "A": "Confidentiality",
+            "B": "Data origin authentication",
+            "C": "Non-repudiation",
+            "D": "Integrity"
+        },
+        "correct": "B"
+    },
+    {
+        "question": "What is the main purpose of non-repudiation in digital signatures?",
+        "options": {
+            "A": "To keep data secret",
+            "B": "To ensure the sender cannot deny sending a message",
+            "C": "To verify the length of a message",
+            "D": "To prevent replay attacks"
+        },
+        "correct": "B"
+    },
+    {
+        "question": "Which of the following is NOT a basic property of a secure digital signature scheme?",
+        "options": {
+            "A": "Easy for the signer to generate a signature",
+            "B": "Easy for anyone to verify a signature",
+            "C": "Easy for anyone to forge a signature",
+            "D": "Hard for anyone to forge a signature"
+        },
+        "correct": "C"
+    },
+    {
+        "question": "Which padding algorithm is recommended for RSA digital signatures to ensure security?",
+        "options": {
+            "A": "PKCS#7",
+            "B": "RSA-PSS",
+            "C": "OAEP",
+            "D": "SHA-PAD"
+        },
+        "correct": "B"
+    },
+    {
+        "question": "Entity authentication is best described as:",
+        "options": {
+            "A": "Verifying that the data has not been altered",
+            "B": "Assuring that a specific entity is active in a communication session",
+            "C": "Encrypting all transmitted messages",
+            "D": "Checking that a message is confidential"
+        },
+        "correct": "B"
+    },
+    {
+        "question": "Which freshness mechanism requires synchronised clocks between parties?",
+        "options": {
+            "A": "Nonce-based mechanism",
+            "B": "Sequence numbers",
+            "C": "Clock-based mechanism",
+            "D": "Token-based mechanism"
+        },
+        "correct": "C"
+    },
+    {
+        "question": "What is a nonce?",
+        "options": {
+            "A": "A private key used for encryption",
+            "B": "A random number used only once",
+            "C": "A timestamp",
+            "D": "A session identifier"
+        },
+        "correct": "B"
+    },
+    {
+        "question": "Which problem is most commonly associated with static passwords?",
+        "options": {
+            "A": "They are too complex to remember",
+            "B": "They can be reused by an attacker in a replay attack",
+            "C": "They require hardware tokens",
+            "D": "They cannot be stored securely"
+        },
+        "correct": "B"
+    },
+    {
+        "question": "Which of the following is a primary security service provided by a digital signature?",
+        "options": {
+            "A": "Message confidentiality",
+            "B": "Data origin authentication",
+            "C": "Key exchange",
+            "D": "Access control"
+        },
+        "correct": "B"
+    },
+    {
+        "question": "Which statement is true about RSA and digital signatures?",
+        "options": {
+            "A": "RSA can be used for digital signatures by swapping the public and private keys",
+            "B": "Any public-key encryption scheme can be converted into a signature scheme by swapping keys",
+            "C": "RSA cannot be used for digital signatures",
+            "D": "RSA signatures do not require padding"
+        },
+        "correct": "A"
+    },
+    {
+        "question": "Why is padding used in RSA digital signatures?",
+        "options": {
+            "A": "To hide the length of the message",
+            "B": "To expand the message hash to match the modulus size",
+            "C": "To encrypt the message",
+            "D": "To make the signature more random"
+        },
+        "correct": "B"
+    },
+    {
+        "question": "Which of the following is an example of a clock-based freshness mechanism?",
+        "options": {
+            "A": "Random number generation",
+            "B": "Timestamps",
+            "C": "Digital signatures",
+            "D": "Hash functions"
+        },
+        "correct": "B"
+    },
+    {
+        "question": "What is the main requirement for using sequence numbers as a freshness mechanism?",
+        "options": {
+            "A": "A secure hash function",
+            "B": "A database to store the latest sequence numbers",
+            "C": "Synchronized clocks",
+            "D": "A public key infrastructure"
+        },
+        "correct": "B"
+    },
+    {
+        "question": "Which type of attack replays an old valid message to gain unauthorized advantage?",
+        "options": {
+            "A": "Man-in-the-middle attack",
+            "B": "Reflection attack",
+            "C": "Replay attack",
+            "D": "Brute force attack"
+        },
+        "correct": "C"
+    },
+    {
+        "question": "What is the purpose of dynamic password schemes?",
+        "options": {
+            "A": "To make passwords longer",
+            "B": "To change the password with each authentication attempt",
+            "C": "To require mutual authentication",
+            "D": "To allow password reuse"
+        },
+        "correct": "B"
+    },
+    {
+        "question": "Which of the following is a major drawback of conventional passwords?",
+        "options": {
+            "A": "They require a secure MAC algorithm",
+            "B": "They expose the password to the verifier each time they are used",
+            "C": "They cannot be stored",
+            "D": "They cannot be used in digital signatures"
+        },
+        "correct": "B"
+    },
+    {
+        "question": "In a zero-knowledge authentication mechanism, who is the 'prover'?",
+        "options": {
+            "A": "The entity verifying the identity",
+            "B": "The entity proving their identity without revealing secret information",
+            "C": "The entity storing authentication data",
+            "D": "The entity issuing digital certificates"
+        },
+        "correct": "B"
+    },
+    {
+        "question": "Which standard specifies a suite of cryptographic protocols for mutual authentication and key establishment?",
+        "options": {
+            "A": "PKCS#1",
+            "B": "ISO/IEC 11770",
+            "C": "SSL/TLS",
+            "D": "FIPS 140-3"
+        },
+        "correct": "B"
+    },
+    {
+        "question": "What is a reflection attack in cryptographic protocols?",
+        "options": {
+            "A": "An attack where a message is mirrored back to the sender to trick them",
+            "B": "An attack where the attacker replays an old message",
+            "C": "An attack that decrypts messages by guessing keys",
+            "D": "An attack on password hashes"
+        },
+        "correct": "A"
+    },
+    {
+        "question": "Why is encryption alone not always sufficient for data origin authentication?",
+        "options": {
+            "A": "Encryption can be broken",
+            "B": "Encryption does not guarantee the identity of the sender",
+            "C": "Encryption requires a MAC",
+            "D": "Encryption is too slow"
+        },
+        "correct": "B"
+    },
+    {
+        "question": "What is the main advantage of including recipient identifiers in protocol messages?",
+        "options": {
+            "A": "It increases message size",
+            "B": "It prevents reflection attacks",
+            "C": "It hides message contents",
+            "D": "It allows faster encryption"
+        },
+        "correct": "B"
+    },
+    {
+        "question": "Which of the following is an example of a symmetric encryption algorithm?",
+        "options": {
+            "A": "RSA",
+            "B": "AES",
+            "C": "ECDSA",
+            "D": "DSA"
+        },
+        "correct": "B"
+    },
+    {
+        "question": "In entity authentication, what does 'freshness' ensure?",
+        "options": {
+            "A": "That the message is confidential",
+            "B": "That the message was recently generated and is not a replay",
+            "C": "That the message has been digitally signed",
+            "D": "That the message is encrypted"
+        },
+        "correct": "B"
+    }
+
+    {
+        "question": "What is the defining feature of a zero-knowledge authentication mechanism?",
+        "options": {
+            "A": "The verifier learns nothing that can be used to impersonate the prover",
+            "B": "The prover sends their password in encrypted form",
+            "C": "Both parties use the same password",
+            "D": "It relies on mutual trust between entities"
+        },
+        "correct": "A"
+    },
+    {
+        "question": "Which of the following is NOT typically part of a cryptographic protocol specification?",
+        "options": {
+            "A": "Protocol assumptions",
+            "B": "Protocol flow",
+            "C": "Programming language used",
+            "D": "Protocol messages"
+        },
+        "correct": "C"
+    }
+
        {
         "question": "What does D.O.A stand for in the context of cryptography",
         "options": {
