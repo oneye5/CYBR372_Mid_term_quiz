@@ -245,7 +245,7 @@ questions_db = [
             "D": "That the message is encrypted"
         },
         "correct": "B"
-    }
+    },
 
     {
         "question": "What is the defining feature of a zero-knowledge authentication mechanism?",
@@ -266,7 +266,7 @@ questions_db = [
             "D": "Protocol messages"
         },
         "correct": "C"
-    }
+    },
 
        {
         "question": "What does D.O.A stand for in the context of cryptography",
